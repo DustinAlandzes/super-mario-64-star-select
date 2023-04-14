@@ -20,19 +20,24 @@ type GLTFResult = GLTF & {
   }
 }
 
-export default function PowerStar(props: JSX.IntrinsicElements['group'] | {active: boolean}) {
+export default function PowerStar(props: JSX.IntrinsicElements['group'] & {active: boolean}) {
   const { nodes, materials } = useGLTF('/PowerStar-transformed.glb') as GLTFResult
 
   const ref = useRef()
   useFrame((state, delta, frame) => {
-    if (props.active) {
-      ref.current.rotation.y += 2 * delta;
-    } else {
-      ref.current.rotation.y = 0;
+    if (ref.current) {
+      if (props.active) {
+        // @ts-ignore
+        ref.current.rotation.y += 2 * delta;
+      } else {
+        // @ts-ignore
+        ref.current.rotation.y = 0;
+      }
     }
   })
 
   return (
+    // @ts-ignore
     <group {...props} dispose={null} ref={ref}>
       <group rotation={[Math.PI / 2, 0, 0]}>
         <mesh geometry={nodes.star_1.geometry} material={materials.Material_065_713E77D_c_bmp} />
