@@ -13,18 +13,18 @@ body,
 }
 
 @font-face {
-  font-family: 'mytypeface';
+  font-family: 'small-sm64';
   src: url('Mario64.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 :root {
-  font-family: 'mytypeface';
-    font-size: 2em;
+  font-family: 'small-sm64';
+  font-size: 2em;
   line-height: 1.5;
   font-weight: 400;
-
+letter-spacing: 0.1em;
   color-scheme: light dark;
   color: #213547;
   background-color: #ffffff;
@@ -34,4 +34,34 @@ body,
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+@font-face {
+  font-family: 'big-sm64';
+  src: url('super-mario-64.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.blockText {
+    font-family: 'big-sm64';
+    font-size: 1em;
+    letter-spacing: 0.1em !important;
+}
+
+.coins {
+  background: -webkit-linear-gradient(rgb(252, 37, 0), rgb(255, 245, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+/*text-shadow: rgb(152, 0, 0) 1px 5px;*/
+    filter: drop-shadow(2px 2px rgb(168, 0, 0));
+}
+
+.notCoins {
+  background: linear-gradient(to bottom right, rgb(93, 95, 152), rgb(254, 254, 253));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+        filter: drop-shadow(2px 2px rgb(50, 54, 82));
+
 }

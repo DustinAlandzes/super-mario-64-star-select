@@ -21,7 +21,7 @@ type GLTFResult = GLTF & {
 }
 
 export default function PowerStar(props: JSX.IntrinsicElements['group'] & {active: boolean}) {
-  const { nodes, materials } = useGLTF('/PowerStar-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF(`${import.meta.env.BASE_URL}/PowerStar-transformed.glb`) as GLTFResult
 
   const ref = useRef()
   useFrame((state, delta, frame) => {
