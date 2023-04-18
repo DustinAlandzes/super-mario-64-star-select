@@ -28,7 +28,7 @@ export default function PowerStar(props: JSX.IntrinsicElements['group'] & {activ
     if (ref.current) {
       if (props.active) {
         // @ts-ignore
-        ref.current.rotation.y += 2 * delta;
+        ref.current.rotation.y += 3 * delta;
       } else {
         // @ts-ignore
         ref.current.rotation.y = 0;

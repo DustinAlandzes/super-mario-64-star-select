@@ -1,5 +1,5 @@
 import {Canvas} from "@react-three/fiber";
-import {Center, Html, meshBounds, useKeyboardControls} from "@react-three/drei";
+import {Html, meshBounds, useKeyboardControls} from "@react-three/drei";
 import PowerStar from "./PowerStar";
 import {useEffect, useState} from "react";
 import {Controls} from "./App";
@@ -51,39 +51,35 @@ export default function StarSelect() {
     }, [leftPressed, rightPressed, selectPressed])
 
     return (
-        <Canvas>
+        <>
+        <Canvas orthographic={true} id={"starSelect"} camera={{zoom: 20}}>
             <ambientLight/>
-            <Center position-y={2}>
-                {Array(STARS).fill(0).map((value, index) => {
-                    return <group
-                        position-x={1 + index}
-                        key={index}>
-                        <Html position-y={1}>{index + 1}</Html>
-                        <PowerStar
-                            raycast={meshBounds}
-                            scale={[0.33, 0.33, 0.33]}
-                            active={currentStar === index}
-                            onPointerDown={() => setCurrentStar(index)}
-                            onPointerOver={() => setCurrentStar(index)}
-                            onPointerEnter={() => {
-                                document.body.style.cursor = 'pointer'
-                            }}
-                            onPointerLeave={() => {
-                                document.body.style.cursor = 'default'
-                            }}
+            <pointLight position={[10, 10, 10]}/>
+            <group position-x={-10}>
+            {Array(STARS).fill(0).map((value, index) => {
+                return <group
+                    position-y={-1}
+                    position-x={index * 5}
+                    key={index}>
+                    <Html position-y={3.5} position-x={-0.3}>{index + 1}</Html>
+                    <PowerStar
+                        raycast={meshBounds}
+                        active={currentStar === index}
+                        onPointerDown={() => setCurrentStar(index)}
+                        onPointerOver={() => setCurrentStar(index)}
+                        onPointerEnter={() => {
+                            document.body.style.cursor = 'pointer'
+                        }}
+                        onPointerLeave={() => {
+                            document.body.style.cursor = 'default'
+                        }}
 
-                        />
-                    </group>
-                })}
-                <Html style={{position: "static"}}>
-                    <br/>
-                    {STAR_NAMES[currentStar].toUpperCase()}<br/>
-                    MY SCORE <img src={"coin.png"}/> <span className={"blockText notCoins"}>x</span> <span className={"blockText coins"}>100</span>
-                    <br/>
-                    <img src={"CourseNumber.png"} style={{width: "2em"}}/><span className={"blockText coins"}>1</span><br/>
-                    BOB-OMB BATTLEFIELD
-                </Html>
-            </Center>
+                    />
+                </group>
+            })}
+            </group>
         </Canvas>
+            <div style={{textAlign: "center"}}>{STAR_NAMES[currentStar].toUpperCase()}</div>
+            </>
     )
 }

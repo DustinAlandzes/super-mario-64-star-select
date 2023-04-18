@@ -5,8 +5,5 @@ import checker from "vite-plugin-checker";
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "/super-mario-64-star-select/",
-  plugins: [react(), checker({
-        // e.g. use TypeScript check
-        typescript: true,
-    })],
+  plugins: [react()],
 })
